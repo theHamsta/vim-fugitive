@@ -2299,7 +2299,7 @@ endif
 function! s:RunWait(state, job) abort
   let finished = 0
   try
-    while get(a:state, 'request', '') !=# 'edit' && (type(a:job) == type(0) ? jobwait([a:job], 1)[0] == -1 : ch_status(a:job) !=# 'closed')
+    while get(a:state, 'request', '') !=# 'edit' && (type(a:job) == type(0) ? jobwait([a:job], 1)[0] == -1 : ch_status(a:job) !=# 'closed' || job_status(a:job) ==# 'run')
       if !exists('*jobwait')
         sleep 1m
       endif
