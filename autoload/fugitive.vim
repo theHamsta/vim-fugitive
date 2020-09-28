@@ -5875,11 +5875,12 @@ function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abo
       if !exists('g:loaded_netrw')
         runtime! autoload/netrw.vim
       endif
-      if exists('*netrw#BrowseX')
-        return 'echomsg '.string(url).'|call netrw#BrowseX('.string(url).', 0)'
-      else
-        return 'echomsg '.string(url).'|call netrw#NetrwBrowseX('.string(url).', 0)'
-      endif
+        return 'echomsg '.string(url).'| T xdg-open '.string(url)
+      "if exists('*netrw#BrowseX')
+        "return 'echomsg '.string(url).'|call netrw#BrowseX('.string(url).', 0)'
+      "else
+        "return 'echomsg '.string(url).'|call netrw#NetrwBrowseX('.string(url).', 0)'
+      "endif
     endif
   catch /^fugitive:/
     return 'echoerr ' . string(v:exception)
